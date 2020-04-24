@@ -10,7 +10,7 @@ var webServer = http.createServer(httpApp).listen(3000);
 var socketServer = io.listen(webServer);
 
 easyrtc.events.on("disconnect", function (a) {
-    require('request').patch('192.168.70.5/api/es/doctor/' + a.getUsername(), {
+    require('request').patch('http://192.168.70.5/api/es/doctor/' + a.getUsername(), {
         json: true,
         headers: {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'},
         body: {data: {type: 'doctor', id: a.getUsername(), attributes: {status: 'NOT_CONNECTED'}}}
